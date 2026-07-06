@@ -33,7 +33,19 @@ export default function Navbar({
             <div className="absolute top-14 right-0 w-48 bg-accent rounded-lg shadow-xl py-2 animate-fade-in border border-primary/10">
               <button onClick={() => { setStarted(false); setMenuOpen(false); }} className="w-full text-left block px-4 py-2 text-primary hover:bg-black hover:bg-opacity-15 font-medium transition-colors">Home</button>
               <button onClick={() => { setShowAbout(true); setMenuOpen(false); }} className="w-full text-left block px-4 py-2 text-primary hover:bg-black hover:bg-opacity-15 font-medium transition-colors">About</button>
-              <button onClick={() => { setShowSubmitSite(true); setMenuOpen(false); }} className="w-full text-left block px-4 py-2 text-primary hover:bg-black hover:bg-opacity-15 font-medium transition-colors">Submit a Site</button>
+              <button 
+                onClick={() => { 
+                  if (loggedIn) {
+                    setShowSubmitSite(true);
+                  } else {
+                    setShowLogin(true);
+                  }
+                  setMenuOpen(false); 
+                }} 
+                className="w-full text-left block px-4 py-2 text-primary hover:bg-black hover:bg-opacity-15 font-medium transition-colors"
+              >
+                Submit a Site
+              </button>
               
               <label className="w-full text-left flex items-center justify-between px-4 py-2 text-primary hover:bg-black hover:bg-opacity-15 font-medium transition-colors cursor-pointer">
                 <span>Show AI Content</span>

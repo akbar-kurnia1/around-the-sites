@@ -43,12 +43,20 @@ function App() {
   };
 
   const handleSiteSubmit = async (data) => {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) {
+      showToast("You must be logged in to submit a site.", "error");
+      return;
+    }
+
     const { error } = await supabase.from('submissions').insert([
       {
         title: data.title,
         url: data.url,
         category: data.category,
-        description: data.description
+        description: data.description,
+        submitter_name: data.submitter_name || null,
+        submitter_email: session.user.email
       }
     ]);
 

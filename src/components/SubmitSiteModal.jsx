@@ -7,6 +7,7 @@ export default function SubmitSiteModal({ onClose, onSubmit }) {
     url: '',
     category: 'Simulation',
     description: '',
+    submitter_name: '',
   });
 
   const categories = CATEGORIES.filter(c => c !== "All");
@@ -50,6 +51,12 @@ export default function SubmitSiteModal({ onClose, onSubmit }) {
           <div>
             <label className="block text-accent text-sm font-bold mb-1">Description</label>
             <textarea required name="description" value={formData.description} onChange={handleChange} rows="3" className="w-full bg-black/20 border border-accent/30 rounded-lg px-4 py-2 text-accent focus:outline-none focus:border-accent resize-none" placeholder="What makes this site special?"></textarea>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex-1">
+              <label className="block text-accent text-sm font-bold mb-1">Your Name (Optional)</label>
+              <input name="submitter_name" value={formData.submitter_name} onChange={handleChange} type="text" className="w-full bg-black/20 border border-accent/30 rounded-lg px-4 py-2 text-accent focus:outline-none focus:border-accent" placeholder="John Doe" />
+            </div>
           </div>
           <button type="submit" className="mt-2 w-full py-2.5 bg-accent text-primary font-bold rounded-lg hover:scale-[1.02] transition-transform">
             Submit for Review
