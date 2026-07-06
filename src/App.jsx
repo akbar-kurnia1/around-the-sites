@@ -4,6 +4,7 @@ import { INITIAL_SITES, CATEGORIES } from './data';
 
 import Toast from './components/Toast';
 import AboutModal from './components/AboutModal';
+import SubmitSiteModal from './components/SubmitSiteModal';
 import HeroSection from './components/HeroSection';
 import SiteCard from './components/SiteCard';
 import SiteGrid from './components/SiteGrid';
@@ -27,6 +28,7 @@ function App() {
   const [sortBy, setSortBy] = useState("Top");
 
   const [showAbout, setShowAbout] = useState(false);
+  const [showSubmitSite, setShowSubmitSite] = useState(false);
   const [showAI, setShowAI] = useState(false);
   const [toast, setToast] = useState({ show: false, message: "", type: "success" });
 
@@ -38,6 +40,25 @@ function App() {
   const showToast = (message, type = "success") => {
     setToast({ show: true, message, type });
     setTimeout(() => setToast({ show: false, message: "", type: "success" }), 3500);
+  };
+
+  const handleSiteSubmit = async (data) => {
+    const { error } = await supabase.from('submissions').insert([
+      {
+        title: data.title,
+        url: data.url,
+        category: data.category,
+        description: data.description
+      }
+    ]);
+
+    if (error) {
+      console.error("Submission Error:", error);
+      showToast(`Submission failed: ${error.message}`, "error");
+    } else {
+      setShowSubmitSite(false);
+      showToast("Website submitted for review! Thank you.", "success");
+    }
   };
 
   const fetchSites = async () => {
@@ -234,10 +255,14 @@ function App() {
         <AboutModal onClose={() => setShowAbout(false)} />
       )}
 
+      {showSubmitSite && (
+        <SubmitSiteModal onClose={() => setShowSubmitSite(false)} onSubmit={handleSiteSubmit} />
+      )}
+
       <Navbar
         loggedIn={loggedIn} setShowLogin={setShowLogin}
         menuOpen={menuOpen} setMenuOpen={setMenuOpen}
-        setStarted={setStarted} setShowAbout={setShowAbout}
+        setStarted={setStarted} setShowAbout={setShowAbout} setShowSubmitSite={setShowSubmitSite}
         showAI={showAI} setShowAI={setShowAI} setActiveCategory={setActiveCategory}
         handleLogout={handleLogout}
       />
