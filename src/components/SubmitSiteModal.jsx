@@ -21,6 +21,7 @@ export default function SubmitSiteModal({ onClose, onSubmit }) {
     onSubmit(formData);
   };
 
+  return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-primary/80 backdrop-blur-md animate-fade-in" onClick={onClose}>
       <div className="bg-primary border-4 border-accent p-8 sm:p-10 rounded-[2rem] max-w-lg w-full shadow-[12px_12px_0_0] shadow-accent relative transform transition-all" onClick={e => e.stopPropagation()}>
         <button onClick={onClose} className="absolute top-6 right-6 text-accent hover:scale-110 transition-transform bg-primary border-2 border-accent rounded-full p-1 z-10">
@@ -72,5 +73,4 @@ export default function SubmitSiteModal({ onClose, onSubmit }) {
         </form>
       </div>
     </div>
-  );
 }
