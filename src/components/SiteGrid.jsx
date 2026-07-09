@@ -41,7 +41,7 @@ function RevealWrapper({ children, index }) {
   );
 }
 
-export default function SiteGrid({ sites, userVotes, onVote }) {
+export default function SiteGrid({ sites, userVotes, onVote, auth }) {
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-5">
       {sites.map((site, index) => (
@@ -50,6 +50,7 @@ export default function SiteGrid({ sites, userVotes, onVote }) {
             site={site}
             userVote={userVotes[site.id]}
             onVote={onVote}
+            auth={auth}
           />
         </RevealWrapper>
       ))}
