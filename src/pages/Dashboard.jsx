@@ -16,7 +16,9 @@ export default function Dashboard({ auth, toast, showToast }) {
     searchQuery, setSearchQuery,
     sortBy, setSortBy,
     showAI, setShowAI,
-    sortedSites,
+    currentPage, setCurrentPage,
+    totalPages,
+    sites,
     visibleCategories,
     handleVote
   } = useSites(showToast, auth.loggedIn, auth.userVotes, auth.setUserVotes);
@@ -25,14 +27,6 @@ export default function Dashboard({ auth, toast, showToast }) {
   const [showAbout, setShowAbout] = useState(false);
   const [showSubmitSite, setShowSubmitSite] = useState(false);
   const [visible, setVisible] = useState(false);
-  
-  // Pagination State
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 48;
-
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [activeCategory, searchQuery, sortBy, showAI]);
 
   useEffect(() => {
     setTimeout(() => setVisible(true), 100);
@@ -65,8 +59,6 @@ export default function Dashboard({ auth, toast, showToast }) {
     }
   };
 
-  const totalPages = Math.ceil(sortedSites.length / itemsPerPage);
-  const paginatedSites = sortedSites.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   return (
     <div className="min-h-screen bg-primary relative pb-20">
@@ -167,14 +159,14 @@ export default function Dashboard({ auth, toast, showToast }) {
               </div>
             ))}
           </div>
-        ) : sortedSites.length === 0 ? (
+        ) : sites.length === 0 ? (
           <div className="w-full py-20 text-center flex flex-col items-center">
             <svg className="w-16 h-16 text-accent/20 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
             <p className="text-accent/60 font-medium text-lg">No websites found matching your criteria.</p>
           </div>
         ) : (
           <>
-            <SiteGrid sites={paginatedSites} userVotes={auth.userVotes} onVote={handleVote} />
+            <SiteGrid sites={sites} userVotes={auth.userVotes} onVote={handleVote} auth={auth} />
             
             {totalPages > 1 && (
               <div className="mt-12 flex justify-center items-center gap-4">
