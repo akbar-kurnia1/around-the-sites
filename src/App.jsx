@@ -6,6 +6,8 @@ import { useAuth } from './hooks/useAuth';
 import LandingPage from './pages/LandingPage';
 import AuthPage from './pages/AuthPage';
 import Dashboard from './pages/Dashboard';
+import ProfilePage from './pages/ProfilePage';
+import BookmarksPage from './pages/BookmarksPage';
 
 function App() {
   const { toast, showToast } = useToast();
@@ -16,6 +18,8 @@ function App() {
       <Route path="/" element={<LandingPage />} />
       <Route path="/login" element={<AuthPage toast={toast} showToast={showToast} auth={auth} />} />
       <Route path="/explore" element={<Dashboard toast={toast} showToast={showToast} auth={auth} />} />
+      <Route path="/profile" element={<ProfilePage toast={toast} showToast={showToast} auth={auth} />} />
+      <Route path="/bookmarks" element={<BookmarksPage toast={toast} showToast={showToast} auth={auth} />} />
     </Routes>
   );
 }
