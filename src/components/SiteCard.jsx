@@ -1,6 +1,16 @@
 import React from 'react';
 
-export default function SiteCard({ site, userVote, onVote }) {
+export default function SiteCard({ site, userVote, onVote, auth }) {
+  const isBookmarked = auth?.userBookmarks?.has(site.id);
+
+  const handleBookmark = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (auth && auth.toggleBookmark) {
+      auth.toggleBookmark(site.id);
+    }
+  };
+
   return (
     <div className="group relative w-full aspect-[3/4] cursor-pointer">
       <a 
@@ -11,6 +21,19 @@ export default function SiteCard({ site, userVote, onVote }) {
       >
         <img src={site.cover_url} alt={site.title} className="w-full h-full object-cover" />
         
+        {/* Bookmark Button */}
+        {auth?.loggedIn && (
+          <button
+            onClick={handleBookmark}
+            className={`absolute top-2 left-2 p-2 rounded-full z-40 shadow-md pointer-events-auto transition-colors ${isBookmarked ? 'bg-accent text-primary' : 'bg-primary/80 text-accent hover:bg-accent hover:text-primary'}`}
+            title="Bookmark this site"
+          >
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/>
+            </svg>
+          </button>
+        )}
+
         <div className="absolute top-2 right-2 flex flex-col items-center bg-accent bg-opacity-95 rounded-md p-1 shadow-lg z-40 pointer-events-auto opacity-90 hover:opacity-100 transition-opacity">
           <button 
             onClick={(e) => onVote(e, site.id, 1, site.score)}
@@ -30,7 +53,14 @@ export default function SiteCard({ site, userVote, onVote }) {
         <div className="absolute inset-0 z-30 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none pb-2 px-2">
           <div className="bg-accent w-full p-2.5 rounded-lg shadow-2xl transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
             <h4 className="text-primary font-bold text-xs mb-1">{site.title}</h4>
-            <p className="text-primary text-[10px] leading-tight opacity-90">{site.description || site.desc}</p>
+            <p className="text-primary text-[10px] leading-tight opacity-90 line-clamp-2">{site.description || site.desc}</p>
+            {site.tags && site.tags.length > 0 && (
+              <div className="mt-2 flex flex-wrap gap-1">
+                {site.tags.map(tag => (
+                  <span key={tag} className="text-[8px] font-bold px-1.5 py-0.5 rounded-sm bg-primary/20 text-primary">#{tag}</span>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </a>
