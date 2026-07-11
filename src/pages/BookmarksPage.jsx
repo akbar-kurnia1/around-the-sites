@@ -6,6 +6,7 @@ import AboutModal from '../components/AboutModal';
 import SubmitSiteModal from '../components/SubmitSiteModal';
 import Toast from '../components/Toast';
 import SiteGrid from '../components/SiteGrid';
+import SiteSkeleton from '../components/SiteSkeleton';
 
 export default function BookmarksPage({ auth, toast, showToast }) {
   const navigate = useNavigate();
@@ -85,7 +86,7 @@ export default function BookmarksPage({ auth, toast, showToast }) {
         {loading ? (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-5">
             {[...Array(6)].map((_, i) => (
-              <div key={i} className="w-full aspect-[3/4] rounded-xl bg-accent/5 animate-pulse border border-accent/10"></div>
+              <SiteSkeleton key={i} />
             ))}
           </div>
         ) : sites.length === 0 ? (
