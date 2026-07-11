@@ -5,6 +5,7 @@ import AboutModal from '../components/AboutModal';
 import SubmitSiteModal from '../components/SubmitSiteModal';
 import Toast from '../components/Toast';
 import SiteGrid from '../components/SiteGrid';
+import SiteSkeleton from '../components/SiteSkeleton';
 import { supabase } from '../supabaseClient';
 import { useNavigate } from 'react-router-dom';
 
@@ -152,11 +153,7 @@ export default function Dashboard({ auth, toast, showToast }) {
         {loading ? (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-5">
             {[...Array(12)].map((_, i) => (
-              <div key={i} className="flex flex-col gap-2">
-                <div className="w-full aspect-[3/4] rounded-xl bg-accent/5 animate-pulse border border-accent/10"></div>
-                <div className="w-3/4 h-3 bg-accent/10 rounded mx-auto animate-pulse mt-2"></div>
-                <div className="w-1/2 h-2 bg-accent/5 rounded mx-auto animate-pulse"></div>
-              </div>
+              <SiteSkeleton key={i} />
             ))}
           </div>
         ) : sites.length === 0 ? (
