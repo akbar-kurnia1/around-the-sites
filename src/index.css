@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --color-primary: #0e3e55;
-  --color-accent: #cfdb27;
+  --color-primary: 14 62 85;
+  --color-accent: 207 219 39;
 }
 
 @layer base {
