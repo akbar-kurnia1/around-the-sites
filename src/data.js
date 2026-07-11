@@ -55,7 +55,13 @@ export const INITIAL_SITES = [
   { id: 54, title: "Google Arts & Culture", description: "Explore collections and stories from around the world.", url: "https://artsandculture.google.com", cover_url: "https://tse1.mm.bing.net/th?q=google+arts+and+culture", category: "History", score: 0, tags: ["Cool", "Web"] },
   { id: 55, title: "Historypin", description: "A global community collaborating around history and old photos.", url: "https://www.historypin.org", cover_url: "https://tse1.mm.bing.net/th?q=historypin+website", category: "History", score: 0, tags: ["Cool", "Web"] },
   { id: 56, title: "TradingView", description: "Track all markets with charting tools and a social network for finance.", url: "https://www.tradingview.com", cover_url: "https://tse1.mm.bing.net/th?q=tradingview+website", category: "Finance", score: 0, tags: ["Cool", "Web"] },
-  { id: 57, title: "Finviz", description: "Stock screener for investors and traders, with rich financial visualizations.", url: "https://finviz.com", cover_url: "https://tse1.mm.bing.net/th?q=finviz+stock+screener", category: "Finance", score: 0, tags: ["Cool", "Web"] }
+  { id: 57, title: "Finviz", description: "Stock screener for investors and traders, with rich financial visualizations.", url: "https://finviz.com", cover_url: "https://tse1.mm.bing.net/th?q=finviz+stock+screener", category: "Finance", score: 0, tags: ["Cool", "Web"] },
+  { id: 58, title: "TETR.IO", description: "A fast-paced, modern multiplayer Tetris game with competitive matchmaking.", url: "https://tetr.io", cover_url: "https://tse1.mm.bing.net/th?q=tetr.io+game+website", category: "Games", score: 0, tags: ["Cool", "Web"] },
+  { id: 59, title: "JKLM.FUN", description: "Play online party games with friends, including the popular word game BombParty.", url: "https://jklm.fun", cover_url: "https://tse1.mm.bing.net/th?q=jklm.fun+bombparty+game", category: "Games", score: 0, tags: ["Cool", "Web"] },
+  { id: 60, title: "Gartic Phone", description: "The classic Telephone Game mixed with drawing. Hilarity guaranteed.", url: "https://garticphone.com", cover_url: "https://tse1.mm.bing.net/th?q=gartic+phone+game", category: "Games", score: 0, tags: ["Cool", "Web"] },
+  { id: 61, title: "Skribbl.io", description: "Free multiplayer drawing and guessing game.", url: "https://skribbl.io", cover_url: "https://tse1.mm.bing.net/th?q=skribbl.io+game", category: "Games", score: 0, tags: ["Cool", "Web"] },
+  { id: 62, title: "Slither.io", description: "The smash-hit multiplayer snake game. Eat glowing orbs and grow longer!", url: "https://slither.io", cover_url: "https://tse1.mm.bing.net/th?q=slither.io+game", category: "Games", score: 0, tags: ["Cool", "Web"] },
+  { id: 63, title: "2048", description: "The classic addictive sliding block puzzle game.", url: "https://play2048.co", cover_url: "https://tse1.mm.bing.net/th?q=2048+puzzle+game", category: "Games", score: 0, tags: ["Cool", "Web"] }
 ];
 
 
