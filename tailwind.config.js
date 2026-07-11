@@ -7,8 +7,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        'primary': 'var(--color-primary)',
-        'accent': 'var(--color-accent)',
+        'primary': 'rgb(var(--color-primary) / <alpha-value>)',
+        'accent': 'rgb(var(--color-accent) / <alpha-value>)',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'Avenir', 'Helvetica', 'Arial', 'sans-serif'],
